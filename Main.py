@@ -1,24 +1,44 @@
 from Display import Contact
-class ContactBook:
-    def __init__(self):
-        self.contacts = {}
-    def display(self):
-        if not self.contacts:
-            print("No contact found")
-        else:
-            print("List of all contacts:",'\n')
-            for name, contact in self.contacts.items():
-                print("Name:", name)
-                print("Phone:", contact.phone)
-                print("Email:", contact.email,'\n')
 
-    def add_contact(self, contact):
-          self.contacts[contact.name] = contact
-Contact_Book = ContactBook()
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def display(self):
+        if not self.head:
+            print("No contact found")
+        #FIXme (Continue)
+
+    def add_contact(self, name, phone, email):
+          #FIXme
+
+    def remove_contact(self, contact):
+        successor = contact.next
+        predecessor = contact.prev
+        if successor != None:
+            successor.prev = predecessor
+        if predecessor != None:
+            predecessor.next = successor
+        if contact is self.head:
+            self.head = successor
+        if contact is self.tail:
+            self.tail = predecessor
+
+    def search_contact(self, search_contact):
+        current_contact = self.head
+        while current_contact != None:
+            if current_contact == search_contact:
+                return current_contact
+            else:
+                current_contact = current_contact.next
+
+        return None
+
+Contact_Book = LinkedList()
 while True:
     print("Enter 1 to add a new contact")
     print("Enter 2 to display all contacts")
-    print("Enter 3 to exit")
+    print("Enter 3 to search contacts")
 
     choice = int(input("Enter your choice:"))
     print("                                ")
