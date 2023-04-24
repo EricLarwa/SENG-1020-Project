@@ -29,7 +29,7 @@ while True:
     elif choice == 4:
         name = input("Enter the name of the contact to be removed: ")
         print("                         ")
-        Contact_Book.remove_contact(contact)
+        Contact_Book.remove_contact(name)
     elif choice == 5:
         Contact_Book.sort_list()
     elif choice == 6:
