@@ -35,20 +35,27 @@ class LinkedList:
             current_contact = current_contact.next
         current_contact.next = contact
 
-    def remove_contact(self, contact):
-        if self.head is None:
-            print(f"{contact} was not found")
+      def remove_contact(self, name):
+        if not self.head:
+            print("Contact Book is empty")
             return
 
-        successor = contact.next
-        predecessor = contact.prev
-        while successor is not None:
-            if successor != None:
-                successor.prev = predecessor
-            if predecessor != None:
-                predecessor.next = successor
-            if contact is self.head:
-                self.head = successor
+        current_contact = self.head
+        predecessor = None
+
+        while current_contact is not None:
+            if current_contact.name == name:
+                if predecessor is not None:
+                    predecessor.next = current_contact.next
+                else:
+                    self.head = current_contact.next
+                print(f"{name} has been removed from the Contact Book")
+                return
+
+            predecessor = current_contact
+            current_contact = current_contact.next
+        print(f"{name} was not found in the Contact Book")
+
 
     def search_contact(self, name):
         current_contact = self.head
