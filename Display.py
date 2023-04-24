@@ -4,6 +4,7 @@ class Contact:
         self.email = email
         self.phone = phone
         self.next = None
+        self.prev = None
 
 
 class LinkedList:
@@ -11,18 +12,15 @@ class LinkedList:
         self.head = None
 
     def display(self):
-        # If no contacts exist, print a message and return :P
         if not self.head:
-            print("No contacts found.")
+            print("No contacts found.", '\n')
             return
 
-        # Traverse the linked list and print the details of each contact **
         current_contact = self.head
         while current_contact:
             print("Name:", current_contact.name)
             print("Phone:", current_contact.phone)
             print("Email:", current_contact.email, '\n')
-
             current_contact = current_contact.next
 
     def add_contact(self, contact):
@@ -35,32 +33,35 @@ class LinkedList:
             current_contact = current_contact.next
         current_contact.next = contact
 
-      def remove_contact(self, name):
-        if not self.head:
-            print("Contact Book is empty")
+    def remove_contact(self, name):
+        if self.head is None:
+            print(f"{name} was not found")
             return
 
-        current_contact = self.head
+        if self.head.name == name:
+            self.head = self.head.next
+            print(f"{name} has been removed from the contact book", '\n')
+            return
+
+        successor = self.head
         predecessor = None
-
-        while current_contact is not None:
-            if current_contact.name == name:
-                if predecessor is not None:
-                    predecessor.next = current_contact.next
+        while successor.next != None:
+            if successor.name == name:
+                if predecessor != None:
+                    predecessor.next = successor.next
                 else:
-                    self.head = current_contact.next
-                print(f"{name} has been removed from the Contact Book")
+                    self.head = successor.next
+                print(f"{name} has been removed from the contact book.", '\n')
                 return
-
-            predecessor = current_contact
-            current_contact = current_contact.next
-        print(f"{name} was not found in the Contact Book")
-
+            predecessor = successor
+            successor = successor.next
+        print(f"{name} is not in the contact book.", '\n')
 
     def search_contact(self, name):
         current_contact = self.head
         while current_contact is not None:
             if current_contact.name == name:
+                print(f"Here is the contact information for {name}: ")
                 print(f"{name} ")
                 print(f"{current_contact.phone} ")
                 print(f"{current_contact.email}",'\n')
@@ -70,6 +71,7 @@ class LinkedList:
     def sort_list(self):
         if self.head is None:
             print("The Contact Book Is Empty")
+
         current = self.head
         contact_list = []
         while current is not None:
@@ -83,4 +85,4 @@ class LinkedList:
             current.next = contact
             current = current.next
         current.next = None
-        print("The Contacts have been sorted by name")
+        print("The Contacts have been sorted by name", '\n')

@@ -4,13 +4,14 @@ from Display import LinkedList
 
 Contact_Book = LinkedList()
 while True:
-    print("Enter 1 to Add a new Contact")
-    print("Enter 2 to Display all Contacts")
-    print("Enter 3 to Search Contacts")
-    print("Enter 4 to Remove a Contact")
-    print("Enter 5 to Sort Contacts")
-    print("Enter 6 to Exit")
-
+    print("- - - - - - - - - - - - - - - - - -")
+    print("- Enter 1 to Add a new Contact    -")
+    print("- Enter 2 to Display all Contacts -")
+    print("- Enter 3 to Search Contacts      -")
+    print("- Enter 4 to Remove a Contact     -")
+    print("- Enter 5 to Sort Contacts        -")
+    print("- Enter 6 to Exit                 -")
+    print("- - - - - - - - - - - - - - - - - -")
     choice = int(input("Enter your choice:"))
     print("                                ")
     if choice == 1:
@@ -27,7 +28,7 @@ while True:
         print("                         ")
         Contact_Book.search_contact(name)
     elif choice == 4:
-        name = input("Enter the name of the contact to be removed: ")
+        contact = input("Enter the name of the contact to be removed: ")
         print("                         ")
         Contact_Book.remove_contact(contact)
     elif choice == 5:
